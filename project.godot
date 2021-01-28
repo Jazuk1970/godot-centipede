@@ -1,0 +1,55 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="Centipede_1_3"
+run/main_scene="res://Scenes/Game.tscn"
+config/icon="res://icon.png"
+config/auto_accept_quit=false
+
+[autoload]
+
+Globals="*res://Scripts/Globals.gd"
+
+[display]
+
+window/size/width=240
+window/size/height=256
+window/size/fullscreen=true
+window/dpi/allow_hidpi=true
+window/handheld/orientation="portrait"
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[layer_names]
+
+2d_render/layer_1="Mushrooms"
+2d_physics/layer_1="Mushrooms"
+2d_render/layer_2="Player"
+2d_physics/layer_2="Centipedes"
+2d_render/layer_3="Centiepedes"
+2d_physics/layer_3="Fleas"
+2d_render/layer_4="Spiders"
+2d_physics/layer_4="Spiders"
+2d_render/layer_5="Fleas"
+2d_physics/layer_5="Bullets"
+2d_render/layer_6="Bullets"
+2d_physics/layer_6="Players"
+
+[rendering]
+
+environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
+environment/default_environment="res://default_env.tres"

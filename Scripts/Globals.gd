@@ -48,14 +48,11 @@ var grid_size:Vector2
 var grid_cell_size = Vector2(8,8)
 
 var no_of_bullets:int
-# warning-ignore:unused_class_variable
 var mushroom_controller:Node
 var no_of_mushrooms:int
-# warning-ignore:unused_class_variable
 var centipede_controller:Node
 var no_of_centipods:int
 var no_of_centipedes:int
-# warning-ignore:unused_class_variable
 var game_controller:Node
 
 func _ready():
@@ -196,4 +193,19 @@ func world_to_grid(_world_pos:Vector2) -> Vector2:
 	else:
 		_y = int(_world_pos.y / grid_cell_size.y)
 
-	return Vector2(_x,_y)
+	return Vector2(int(_x),int(_y))
+
+#Return a new ID from a given array
+func get_new_id(_array:Array) -> int:
+	var _new_id = 1
+	while _array.has(_new_id):
+		_new_id += 1
+	return _new_id
+
+#Remove an ID from an array
+func remove_id(_array:Array,_id:int) -> void:
+	var _index = _array.find(_id)
+	_array.remove(_index)
+
+func wait(_secs:float):
+	yield(get_tree().create_timer(_secs),"timeout")

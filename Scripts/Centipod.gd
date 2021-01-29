@@ -2,7 +2,7 @@ extends Node2D
 onready var spr = $Area2D/Sprite
 #export (Font) var font
 signal update_neighbour_pos(_pos,_dir)
-signal create_mushroom(_type,_pos,_id)
+signal create_mushroom(_type,_pos)
 
 enum pod_types{NORMAL,POISON}
 enum states{SPAWNING,ALIVE,DEAD}
@@ -283,7 +283,8 @@ func _convert_to_head():
 
 func _hit():
 	Globals.Score += points[1] if head else points [0]
-	emit_signal("create_mushroom",0,position - offset,centipede_ID + centi_pod_ID)
+#	emit_signal("create_mushroom",0,position - offset,centipede_ID + centi_pod_ID)
+	emit_signal("create_mushroom",0,position - offset)
 	if next_neighbour != null:
 		next_neighbour.convert_to_head = true
 		next_neighbour.prev_neighbour = null
@@ -293,7 +294,6 @@ func _hit():
 	queue_free()
 
 func id_update():
-
 	if 	Globals.grid_get_cell(grid_position,type) == centipede_ID:
 		Globals.grid_set_cell(grid_position,type,new_centipede_ID)
 	centipede_ID = new_centipede_ID

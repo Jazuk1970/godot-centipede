@@ -2,7 +2,7 @@ extends Node2D
 export (PackedScene) var objCenti
 
 var centipods:Array = []
-var centipod_ids:Array = []
+var centipede_ids:Array = []
 
 
 #Level data
@@ -28,7 +28,7 @@ func _ready():
 	cur_centipedes_on_level = 1
 	Globals.no_of_centipedes = 0
 	cur_centipede_length = max_centipede_length
-	centipod_ids.clear()
+	centipede_ids.clear()
 
 
 func _process(delta):
@@ -51,7 +51,7 @@ func _process(delta):
 		cur_centipedes_on_level -= 1
 		tgtdir.x *= -1
 		$Timer.start(_spawn_delay)
-
+	return delta
 	#TODO: add some code here to scan all centis and check for valid ID's etc removing old ones from the list as required.
 	#TODO: add code to check if centi has fully spawned
 #
@@ -104,7 +104,7 @@ func _createcentipede(_len,_spawn_dir,_tgt_dir,_speed,_update_rate):
 		####################################
 
 func reset_level():
-	centipod_ids.clear()
+	centipede_ids.clear()
 	if cur_centipede_length == 1:
 		cur_centipede_length = max_centipede_length
 		cur_centipedes_on_level = 1
@@ -116,9 +116,7 @@ func reset_level():
 
 #Get a unique ID for the centipede and used for all its children
 func get_new_id() -> int:
-	var _new_id = 1
-	while centipod_ids.has(_new_id):
-		_new_id += 1
-	centipod_ids.append(_new_id)
+	var _new_id = Globals.get_new_id(centipede_ids)
+	centipede_ids.append(_new_id)
 	return _new_id
 

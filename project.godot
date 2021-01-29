@@ -24,6 +24,10 @@ config/auto_accept_quit=false
 
 Globals="*res://Scripts/Globals.gd"
 
+[debug]
+
+gdscript/warnings/unused_class_variable=false
+
 [display]
 
 window/size/width=240

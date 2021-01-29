@@ -31,6 +31,10 @@ objCenti = ExtResource( 5 )
 [node name="Timer" type="Timer" parent="CentiController"]
 one_shot = true
 
+[node name="side_spawn_delay" type="Timer" parent="CentiController"]
+wait_time = 20.0
+one_shot = true
+
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 120, 240 )
 
@@ -39,3 +43,4 @@ position = Vector2( 120, 240 )
 [node name="GridVisualiser" type="Node2D" parent="."]
 visible = false
 script = ExtResource( 8 )
+[connection signal="timeout" from="CentiController/side_spawn_delay" to="CentiController" method="_on_side_spawn_delay_timeout"]

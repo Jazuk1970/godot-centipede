@@ -1,5 +1,5 @@
 extends Node
-enum mushroomtypes{normal,poison}		#Mushroom types
+enum mushroom_types{NORMAL,POISON}		#Mushroom types
 enum grid_types{EMPTY,MUSHROOM,CENTIPOD,PLAYER,BLOCKED,OUT_OF_BOUNDS}
 
 #Constants
@@ -46,6 +46,8 @@ var centipod_grid:Array = []
 
 var grid_size:Vector2
 var grid_cell_size = Vector2(8,8)
+var ymaxline:int
+var ymidline:int
 
 var no_of_bullets:int
 var mushroom_controller:Node
@@ -54,13 +56,16 @@ var centipede_controller:Node
 var no_of_centipods:int
 var no_of_centipedes:int
 var game_controller:Node
+var READY:bool = false
 
 func _ready():
 	Screen_Size.x = ProjectSettings.get_setting("display/window/size/width")
 	Screen_Size.y = ProjectSettings.get_setting("display/window/size/height")
 	grid_size = (Screen_Size / grid_cell_size)
+	ymaxline = int(grid_size.y) - 2
+	ymidline = int(grid_size.y) - 10
 	_initialise_grid()
-
+	READY = true
 
 	#setBKG(Color8(255,4,4))
 
@@ -196,9 +201,9 @@ func world_to_grid(_world_pos:Vector2) -> Vector2:
 	return Vector2(int(_x),int(_y))
 
 #Return a new ID from a given array
-func get_new_id(_array:Array) -> int:
+func get_new_id(_store) -> int:
 	var _new_id = 1
-	while _array.has(_new_id):
+	while _store.has(_new_id):
 		_new_id += 1
 	return _new_id
 

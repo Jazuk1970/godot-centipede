@@ -10,10 +10,15 @@ var max_centipede_length:int = 12
 var cur_centipedes_on_level:int
 var cur_centipede_length:int
 
-var normal_speed:int = 1
-var fast_speed:int = 2
+var normal_speed:int = 2
+var fast_speed:int = 4
 
-var spawndir:Vector2 = Globals.dir.down
+var top_spawn_dir:Vector2 = Globals.dir.down
+var top_spawn_pos:Vector2
+var side_spawn_pos:Vector2
+var side_spawn_dir:Vector2 = Globals.dir.right
+var side_spawn_delay_time:float = 10.0
+var side_spawn_delay_active:bool = false
 var tgtdir:Vector2 = Globals.dir.downright
 
 
@@ -28,10 +33,15 @@ func _ready():
 	cur_centipedes_on_level = 1
 	Globals.no_of_centipedes = 0
 	cur_centipede_length = max_centipede_length
-	centipede_ids.clear()
+#	centipede_ids.clear()
+	centipods.clear()
+	top_spawn_pos = Vector2(Globals.grid_size.x / 2,-4)
+	side_spawn_pos =Vector2(-1,Globals.ymidline)
 
 
 func _process(delta):
+	if not Globals.READY:
+		return
 	if cur_centipedes_on_level > 0 and $Timer.is_stopped() and Globals.mushroom_controller:
 		var _speed:int
 		var _length:int
@@ -47,7 +57,7 @@ func _process(delta):
 			_length = 1
 			_spawn_delay = 0.1
 		Globals.no_of_centipedes += 1
-		_createcentipede(_length,spawndir,tgtdir,_speed,_update_rate)
+		createcentipede(top_spawn_pos,_length,top_spawn_dir,tgtdir,_speed)
 		cur_centipedes_on_level -= 1
 		tgtdir.x *= -1
 		$Timer.start(_spawn_delay)
@@ -63,9 +73,8 @@ func _process(delta):
 #			if _centipede.state == _centipede.states.SPAWNING:
 #				_centipedespawning = true
 
-
-func _createcentipede(_len,_spawn_dir,_tgt_dir,_speed,_update_rate):
-	var _pos = Vector2(128,-32)	#spawn position?? possibly change for variable so single centis can be spawned later in the game
+func createcentipede(_grid_pos,_len,_spawn_dir,_tgt_dir,_speed,_update_rate:float = 0.0):
+	var _pos = Globals.grid_to_world(_grid_pos)
 	var _neighbour:Node = null
 	var _result:int
 	var _ID:int = get_new_id()
@@ -87,9 +96,10 @@ func _createcentipede(_len,_spawn_dir,_tgt_dir,_speed,_update_rate):
 		_centipod.parent = self
 		_centipod.centi_pod_ID = _centipod_ID
 		_centipod.centipede_ID = _ID
-		_centipod.speed = _speed
+		_centipod.normal_speed = _speed
 		_centipod.add_to_group("centipod")
 		_result = _centipod.connect("create_mushroom",Globals.mushroom_controller,"createMushroom")
+		_result = _centipod.connect("create_new_centipod",self,"create_new_centipod")
 		if _neighbour != null:
 			_result = _neighbour.connect("update_neighbour_pos",_centipod,"_on_signal_update_neighbour_pos")
 			_neighbour.next_neighbour = _centipod
@@ -98,13 +108,9 @@ func _createcentipede(_len,_spawn_dir,_tgt_dir,_speed,_update_rate):
 		centipods.append(_centipod)
 		self.add_child(_centipod)
 
-		#DEBUG CODE ONLY####################
-		if spawndir == Globals.dir.left:
-			_centipod.modulate = Color8(155,155,255)
-		####################################
-
 func reset_level():
 	centipede_ids.clear()
+	centipods.clear()
 	if cur_centipede_length == 1:
 		cur_centipede_length = max_centipede_length
 		cur_centipedes_on_level = 1
@@ -120,3 +126,11 @@ func get_new_id() -> int:
 	centipede_ids.append(_new_id)
 	return _new_id
 
+func create_new_centipod()-> void:
+	createcentipede(side_spawn_pos,1,side_spawn_dir,Globals.dir.downright,fast_speed)
+	$side_spawn_delay.start(clamp(1 * Globals.no_of_centipods,1,side_spawn_delay_time))
+	side_spawn_delay_active = true
+	
+
+func _on_side_spawn_delay_timeout():
+	side_spawn_delay_active = false

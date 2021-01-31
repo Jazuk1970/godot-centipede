@@ -370,3 +370,7 @@ func _introduce_new_pod() -> void:
 		var _chance = randi() % _pod_chance == 1	#get a random value between 0 - 10 and check if it is 5
 		if _chance and not Globals.centipede_controller.side_spawn_delay_active:
 			emit_signal("create_new_centipod")
+
+func _on_Area2D_body_entered(body):
+	body.hit(self)
+

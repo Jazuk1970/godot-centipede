@@ -1,7 +1,7 @@
 extends Node
 enum mushroom_types{NORMAL,POISON}		#Mushroom types
 enum grid_types{EMPTY,MUSHROOM,CENTIPOD,PLAYER,BLOCKED,OUT_OF_BOUNDS}
-
+enum return_code{OK,STATE_DOES_NOT_EXISTS}
 #Constants
 const gameStates = {							#The game states possible
 	"Title": 1,
@@ -31,8 +31,8 @@ const dir = {
 #Variables
 var Score:int = 0 setget updateScore			#Player Score
 var HiScore:int = 0 setget updateHiScore 		#Hi-Score (not retentive from reboot)
-#var Lives:int  = 0 setget updateLives			#Player lives left
-#var Level:int = 0 setget updateLevel			#Level of play (just determines starting row of aliens)
+var Lives:int  = 0 setget updateLives			#Player lives left
+var Level:int = 0 setget updateLevel			#Level of play (just determines starting row of aliens)
 var Screen_Size:Vector2 = Vector2()				#Screen size holder
 var OSScreen_Size:Vector2 = Vector2()			#OS screen size holder
 var HUD:Node									#A pointer to the HUD
@@ -50,13 +50,19 @@ var ymaxline:int
 var ymidline:int
 
 var no_of_bullets:int
-var mushroom_controller:Node
 var no_of_mushrooms:int
-var centipede_controller:Node
 var no_of_centipods:int
 var no_of_centipedes:int
-var game_controller:Node
-var READY:bool = false
+var showing_message:bool = false
+var message_done:bool = false
+
+#controller nodes
+var main_controller:Object
+var game_controller:Object	
+var player_controller:Object
+var mushroom_controller:Object
+var centipede_controller:Object
+var flea_controller:Object
 
 func _ready():
 	Screen_Size.x = ProjectSettings.get_setting("display/window/size/width")
@@ -64,47 +70,54 @@ func _ready():
 	grid_size = (Screen_Size / grid_cell_size)
 	ymaxline = int(grid_size.y) - 2
 	ymidline = int(grid_size.y) - 10
-	_initialise_grid()
-	READY = true
+	_initialise_grid(grid_types.MUSHROOM)
+	_initialise_grid(grid_types.CENTIPOD)
+
 
 	#setBKG(Color8(255,4,4))
 
 #Update the level function
-#func updateLevel(val):							#Update the level value in the HUD
-#	pass
+func updateLevel(_val):							#Update the level value in the HUD
+	if HUD == null:									#get a reference to the hud if we've not already
+		 HUD = get_tree().get_nodes_in_group("HUD").front()		#keep the reference
+	Level = _val
+	HUD.updateLevel(1,Level)					#call the HUD with the update
 
 #Update the score function
-func updateScore(val):							#Update the score value in the HUD
+func updateScore(_val):							#Update the score value in the HUD
 	if HUD == null:									#get a reference to the hud if we've not already
-		 HUD = get_node("/root/Game/HUD")		#keep the reference
-	Score = val									#update the score
+		 HUD = get_tree().get_nodes_in_group("HUD").front()		#keep the reference
+	Score = _val									#update the score
 	HUD.updateScore(1,Score)					#call the HUD with the update
 	if Score > HiScore:							#check if we have a new hi-score
 		updateHiScore(Score)					#update the hi-score value
 
 #Update the lives function
-#func updateLives(val):							#Update the player lives in the hud
-#	pass
+func updateLives(_val):							#Update the player lives in the hud
+	if HUD == null:									#get a reference to the hud if we've not already
+		 HUD = get_tree().get_nodes_in_group("HUD").front()		#keep the reference
+	Lives = _val
+	HUD.updateLives(1,Lives)					#call the HUD with the update
 
 #Update the hi-score function
-func updateHiScore(val):						#Update the hi-score in the hud
+func updateHiScore(_val):						#Update the hi-score in the hud
 	if HUD == null:									#get a reference to the hud if we've not already
-		 HUD = get_node("/root/Game/HUD")		#keep the reference
-	HiScore = val								#update the hi-score
+		 HUD = get_tree().get_nodes_in_group("HUD").front()		#keep the reference
+	HiScore = _val								#update the hi-score
 	HUD.updateScore(0,HiScore)					#call the HUD with the update
 
 #Choose a random number between low and high values (type: 0 = integer, 1 = float)
-func getRand_Range(low,high, type, gen = null):
-	var rng
-	if !gen:	#if a generator has not been passed create a temporary new one
-		rng = RandomNumberGenerator.new()		#Initialise a random number generator
-		rng.randomize()								#randomize the result
+func getRand_Range(_low,_high,_type,_gen = null):
+	var _rng
+	if !_gen:	#if a generator has not been passed create a temporary new one
+		_rng = RandomNumberGenerator.new()		#Initialise a random number generator
+		_rng.randomize()								#randomize the result
 	else:
-		rng = gen
-	if type == 0:								#Check if an integer is requested
-		return rng.randi_range( low, high)		#return a random integer between the two specified values
+		_rng = _gen
+	if _type == 0:								#Check if an integer is requested
+		return _rng.randi_range( _low, _high)		#return a random integer between the two specified values
 	else:
-		return rng.randf_range( low, high)		#return a random float between the two specified values
+		return _rng.randf_range( _low, _high)		#return a random float between the two specified values
 
 func mapScreenSize():
 	Screen_Size = Vector2(get_viewport().size.x,get_viewport().size.y) 	#Get the screen size
@@ -160,14 +173,14 @@ func grid_get_cell(_pos:Vector2,_type:int) -> int:
 		return _grid[_pos.x][_pos.y]
 
 #Initialise the grid to an empty array
-func _initialise_grid() -> void:
+func _initialise_grid(_type) -> void:
+	var _grid = _get_grid(_type)
+	_grid.clear()
 	for _x in range(grid_size.x):
 		var _column = []
 		for _y in range (grid_size.y):
 			_column.append(grid_types.EMPTY)
-		grid.append(_column)
-	mushroom_grid = grid.duplicate(true)
-	centipod_grid = grid.duplicate(true)
+		_grid.append(_column)
 
 
 func _get_grid(_type) -> Array:

@@ -69,8 +69,7 @@ size_flags_vertical = 0
 custom_constants/separation = 0
 
 [node name="Score" type="Label" parent="1UP"]
-margin_left = 12.0
-margin_right = 36.0
+margin_right = 24.0
 margin_bottom = 9.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -103,8 +102,7 @@ size_flags_vertical = 0
 custom_constants/separation = 0
 
 [node name="Score" type="Label" parent="HI"]
-margin_left = 12.0
-margin_right = 36.0
+margin_right = 24.0
 margin_bottom = 9.0
 size_flags_horizontal = 4
 size_flags_vertical = 8

@@ -18,7 +18,7 @@ func updateScore(player,val):
 func updateLives(player,val):
 #	var sprW = sprPlayer.get_width()				#Get the width of the player sprite
 #	var ll = $BottomBar/Lives						#Get a reference to the lives area on the bottom bar of the hud
-#	var lives = Globals.Lives						#Get the current lives left
+	var lives = val						#Get the current lives left
 #	for l in range(ll.get_child_count()):			#Loop through all the player lives images
 #		var life = ll.get_child(l)					#Get a reference to the specific player image
 #		life.queue_free()							#remove the image
@@ -31,11 +31,12 @@ func updateLives(player,val):
 #		spr.name = "PlayerLife" + str(l+1)							#Name the image
 #		spr.modulate = Globals.PlayerColour							#Set the image colour
 #		ll.add_child(spr)											#Add the sprite as a child of the lives bar
-#	$BottomBar/LivesLeft/Lives.text = str(lives+1)					#Update the lives remaining text
+	$BottomBar/LivesLeft/Lives.text = str(lives)					#Update the lives remaining text
 	pass
 #This function will show a message to the user, and introduce a delay which also pauses movements
 func showMessage(msg,dly):
-	Globals.gameFreeze = true						#Set the game freeze flag
+	Globals.showing_message = true
+	Globals.message_done = false
 	$Message/Label.text = msg						#Set the message box text
 	$Message.visible = true							#Show the message box
 	$Message/Anim.play("showMessage")				#Play the show message animation
@@ -44,8 +45,9 @@ func showMessage(msg,dly):
 	$Message/Anim.play("hideMessage")				#Play the hide message animation
 	yield($Message/Anim,"animation_finished")		#Wait until the animation has finished playing
 	$Message.visible = false						#Hide the message box
-	Globals.gameFreeze = false						#Unfreeze the game
-
+	Globals.showing_message = false
+	Globals.message_done = true
+	
 #This function will show/hide a title page
 func showTitle(val):
 	$TitleBox.visible = val							#Set the visibility of the title box

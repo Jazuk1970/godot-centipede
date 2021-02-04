@@ -16,13 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Centipede_1_3"
-run/main_scene="res://Scenes/GameController.tscn"
+run/main_scene="res://Main/GameController.tscn"
 config/icon="res://icon.png"
 config/auto_accept_quit=false
 
 [autoload]
 
-Globals="*res://Scripts/Globals.gd"
+Globals="*res://Main/Globals.gd"
 
 [debug]
 
@@ -30,12 +30,12 @@ gdscript/warnings/unassigned_variable=false
 gdscript/warnings/unassigned_variable_op_assign=false
 gdscript/warnings/unused_variable=false
 gdscript/warnings/shadowed_variable=false
-gdscript/warnings/unused_class_variable=false
 
 [display]
 
 window/size/width=240
 window/size/height=256
+window/size/fullscreen=true
 window/dpi/allow_hidpi=true
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"

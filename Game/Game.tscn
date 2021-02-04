@@ -1,0 +1,70 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Utility/SFX_Controller.gd" type="Script" id=1]
+[ext_resource path="res://Utility/GridVisualizer.gd" type="Script" id=2]
+[ext_resource path="res://Mobs/Scorpion/Scorpion_controller.gd" type="Script" id=3]
+[ext_resource path="res://Mobs/Flea/Flea_controller.gd" type="Script" id=4]
+[ext_resource path="res://Mobs/Spider/Spider_controller.gd" type="Script" id=5]
+[ext_resource path="res://Items/Mushrooms/MushroomController.gd" type="Script" id=6]
+[ext_resource path="res://Main/HUD.gd" type="Script" id=7]
+[ext_resource path="res://Mobs/Centipede/Centipod.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Mobs/Spider/Spider_controller.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Main/HUD.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Mobs/Centipede/CentipedeController.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Mobs/Flea/flea_controller.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Mobs/Scorpion/scorpion_controller.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Player/player.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Mobs/Scorpion/sfx_scorpion.wav" type="AudioStream" id=15]
+[ext_resource path="res://Mobs/Spider/sfx_spider.wav" type="AudioStream" id=16]
+[ext_resource path="res://Player/sfx_shot.wav" type="AudioStream" id=17]
+[ext_resource path="res://Mobs/Flea/sfx_flea.wav" type="AudioStream" id=18]
+[ext_resource path="res://Mobs/Centipede/sfx_centi.wav" type="AudioStream" id=19]
+[ext_resource path="res://Game/Game.gd" type="Script" id=20]
+[ext_resource path="res://Player/Player.gd" type="Script" id=21]
+[ext_resource path="res://Mobs/Centipede/CentiController.gd" type="Script" id=22]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 20 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 240.0
+margin_bottom = 256.0
+color = Color( 0, 0.0392157, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MushroomController" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="CentiController" type="Node2D" parent="." instance=ExtResource( 11 )]
+script = ExtResource( 22 )
+objCenti = ExtResource( 8 )
+
+[node name="Flea_controller" type="Node2D" parent="." instance=ExtResource( 12 )]
+script = ExtResource( 4 )
+
+[node name="Scorpion_controller" type="Node2D" parent="." instance=ExtResource( 13 )]
+script = ExtResource( 3 )
+
+[node name="Spider_controller" type="Node2D" parent="." instance=ExtResource( 9 )]
+script = ExtResource( 5 )
+
+[node name="Player" type="KinematicBody2D" parent="." instance=ExtResource( 14 )]
+position = Vector2( 120, 240 )
+collision_layer = 32
+collision_mask = 15
+script = ExtResource( 21 )
+
+[node name="HUD" type="CanvasLayer" parent="." groups=[
+"HUD",
+] instance=ExtResource( 10 )]
+script = ExtResource( 7 )
+
+[node name="GridVisualiser" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 2 )
+
+[node name="SFX_controller" type="Node2D" parent="."]
+script = ExtResource( 1 )
+sample_collection = [ ExtResource( 19 ), ExtResource( 18 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 15 ) ]

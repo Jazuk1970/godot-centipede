@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_spider.wav-291dd304f4763ff2d0913dc772490551.sample"
+
+[deps]
+
+source_file="res://Mobs/Spider/sfx_spider.wav"
+dest_files=[ "res://.import/sfx_spider.wav-291dd304f4763ff2d0913dc772490551.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

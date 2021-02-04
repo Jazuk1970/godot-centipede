@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_scorpion.wav-7b786bd234bda81b795a3813b5cc1f96.sample"
+
+[deps]
+
+source_file="res://Mobs/Scorpion/sfx_scorpion.wav"
+dest_files=[ "res://.import/sfx_scorpion.wav-7b786bd234bda81b795a3813b5cc1f96.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

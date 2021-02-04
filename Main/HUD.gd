@@ -7,6 +7,11 @@ var sprPlayer = preload("res://Player/centipede_player.png")		#Preload the playe
 var players = ["HI","1UP", "2UP"]					#Player array (future multi-player)
 var livesPos = Vector2(4,4)						#A pointer to the play lives image location on the hud
 
+func _ready():
+	Globals.HUD = self
+	updateScore(0,Globals.HiScore)
+
+
 #Update the score
 func updateScore(player,val):
 	var obj = get_node(players[player] + "/Score")	#Get a reference the score object in the hud

@@ -39,6 +39,7 @@ func _process(_delta):
 func _initialise() -> void:
 	Globals.Level = 1
 	Globals.Lives = 3
+	Globals.Score = 0
 	Globals.mushroom_controller.state = Globals.mushroom_controller.states.INITIALISE
 	Globals.centipede_controller.state = Globals.centipede_controller.states.INITIALISE
 	Globals.flea_controller.state = Globals.flea_controller.states.INITIALISE

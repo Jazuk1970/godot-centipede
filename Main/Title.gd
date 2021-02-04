@@ -1,21 +1,25 @@
 extends CanvasLayer
 signal startgame
+signal hiscore
+onready var _hiscore_table = $VBoxContainer/HiScore_table
+var _allow_start:bool
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	_hiscore_table.connect("score_entered",self, "_on_score_entered")
+	self.connect("hiscore",_hiscore_table,"new_high_score")
+	if Globals.Score > Globals.Min_HiScore:
+		_allow_start = false
+		emit_signal("hiscore",Globals.Score)
+	else:
+		_allow_start = true
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			emit_signal("startgame")
+			if _allow_start:
+				emit_signal("startgame")
+
+func _on_score_entered():
+	_allow_start = true
+	

@@ -1,0 +1,780 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Main/HiScore_table.gd" type="Script" id=1]
+[ext_resource path="res://Main/Assets/fonts/font.tres" type="DynamicFont" id=2]
+
+[node name="HiScore_table" type="VBoxContainer"]
+margin_top = 20.0
+margin_right = 240.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 0, 90 )
+script = ExtResource( 1 )
+
+[node name="HiScore_text" type="Label" parent="."]
+margin_right = 240.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+text = "High Scores"
+align = 1
+
+[node name="HiScores" type="VBoxContainer" parent="."]
+editor/display_folded = true
+margin_top = 12.0
+margin_right = 240.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 240, 100 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HS1" type="HBoxContainer" parent="HiScores"]
+margin_right = 240.0
+margin_bottom = 8.0
+alignment = 1
+
+[node name="score" type="Label" parent="HiScores/HS1"]
+margin_left = 10.0
+margin_right = 80.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 70, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "100000"
+align = 2
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="separator" type="Label" parent="HiScores/HS1"]
+margin_left = 84.0
+margin_right = 92.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="HiScores/HS1"]
+margin_left = 96.0
+margin_right = 216.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+text = "ATARI INC"
+
+[node name="spacer" type="Label" parent="HiScores/HS1"]
+margin_left = 220.0
+margin_right = 230.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HS2" type="HBoxContainer" parent="HiScores"]
+margin_top = 8.0
+margin_right = 240.0
+margin_bottom = 16.0
+alignment = 1
+
+[node name="score" type="Label" parent="HiScores/HS2"]
+margin_left = 10.0
+margin_right = 80.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 70, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "90000"
+align = 2
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="separator" type="Label" parent="HiScores/HS2"]
+margin_left = 84.0
+margin_right = 92.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="HiScores/HS2"]
+margin_left = 96.0
+margin_right = 216.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "ATARI INC"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spacer" type="Label" parent="HiScores/HS2"]
+margin_left = 220.0
+margin_right = 230.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HS3" type="HBoxContainer" parent="HiScores"]
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 24.0
+alignment = 1
+
+[node name="score" type="Label" parent="HiScores/HS3"]
+margin_left = 10.0
+margin_right = 80.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 70, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "80000"
+align = 2
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="separator" type="Label" parent="HiScores/HS3"]
+margin_left = 84.0
+margin_right = 92.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="HiScores/HS3"]
+margin_left = 96.0
+margin_right = 216.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "ATARI INC"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spacer" type="Label" parent="HiScores/HS3"]
+margin_left = 220.0
+margin_right = 230.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HS4" type="HBoxContainer" parent="HiScores"]
+editor/display_folded = true
+margin_top = 24.0
+margin_right = 240.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="score" type="Label" parent="HiScores/HS4"]
+margin_left = 10.0
+margin_right = 80.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 70, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "70000"
+align = 2
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="separator" type="Label" parent="HiScores/HS4"]
+margin_left = 84.0
+margin_right = 92.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="HiScores/HS4"]
+margin_left = 96.0
+margin_right = 216.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "ATARI INC"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spacer" type="Label" parent="HiScores/HS4"]
+margin_left = 220.0
+margin_right = 230.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HS5" type="HBoxContainer" parent="HiScores"]
+editor/display_folded = true
+margin_top = 32.0
+margin_right = 240.0
+margin_bottom = 40.0
+alignment = 1
+
+[node name="score" type="Label" parent="HiScores/HS5"]
+margin_left = 10.0
+margin_right = 80.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 70, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "60000"
+align = 2
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="separator" type="Label" parent="HiScores/HS5"]
+margin_left = 84.0
+margin_right = 92.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="HiScores/HS5"]
+margin_left = 96.0
+margin_right = 216.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "ATARI INC"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spacer" type="Label" parent="HiScores/HS5"]
+margin_left = 220.0
+margin_right = 230.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HS6" type="HBoxContainer" parent="HiScores"]
+editor/display_folded = true
+margin_top = 40.0
+margin_right = 240.0
+margin_bottom = 48.0
+alignment = 1
+
+[node name="score" type="Label" parent="HiScores/HS6"]
+margin_left = 10.0
+margin_right = 80.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 70, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "50000"
+align = 2
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="separator" type="Label" parent="HiScores/HS6"]
+margin_left = 84.0
+margin_right = 92.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="HiScores/HS6"]
+margin_left = 96.0
+margin_right = 216.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "ATARI INC"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spacer" type="Label" parent="HiScores/HS6"]
+margin_left = 220.0
+margin_right = 230.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HS7" type="HBoxContainer" parent="HiScores"]
+editor/display_folded = true
+margin_top = 48.0
+margin_right = 240.0
+margin_bottom = 56.0
+alignment = 1
+
+[node name="score" type="Label" parent="HiScores/HS7"]
+margin_left = 10.0
+margin_right = 80.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 70, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "40000"
+align = 2
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="separator" type="Label" parent="HiScores/HS7"]
+margin_left = 84.0
+margin_right = 92.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="HiScores/HS7"]
+margin_left = 96.0
+margin_right = 216.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "ATARI INC"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spacer" type="Label" parent="HiScores/HS7"]
+margin_left = 220.0
+margin_right = 230.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HS8" type="HBoxContainer" parent="HiScores"]
+editor/display_folded = true
+margin_top = 56.0
+margin_right = 240.0
+margin_bottom = 64.0
+alignment = 1
+
+[node name="score" type="Label" parent="HiScores/HS8"]
+margin_left = 10.0
+margin_right = 80.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 70, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "30000"
+align = 2
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="separator" type="Label" parent="HiScores/HS8"]
+margin_left = 84.0
+margin_right = 92.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="HiScores/HS8"]
+margin_left = 96.0
+margin_right = 216.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "ATARI INC"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spacer" type="Label" parent="HiScores/HS8"]
+margin_left = 220.0
+margin_right = 230.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HS9" type="HBoxContainer" parent="HiScores"]
+editor/display_folded = true
+margin_top = 64.0
+margin_right = 240.0
+margin_bottom = 72.0
+alignment = 1
+
+[node name="score" type="Label" parent="HiScores/HS9"]
+margin_left = 10.0
+margin_right = 80.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 70, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "20000"
+align = 2
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="separator" type="Label" parent="HiScores/HS9"]
+margin_left = 84.0
+margin_right = 92.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="HiScores/HS9"]
+margin_left = 96.0
+margin_right = 216.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "ATARI INC"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spacer" type="Label" parent="HiScores/HS9"]
+margin_left = 220.0
+margin_right = 230.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HS10" type="HBoxContainer" parent="HiScores"]
+margin_top = 72.0
+margin_right = 240.0
+margin_bottom = 80.0
+alignment = 1
+
+[node name="score" type="Label" parent="HiScores/HS10"]
+margin_left = 10.0
+margin_right = 80.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 70, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "10000"
+align = 2
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="separator" type="Label" parent="HiScores/HS10"]
+margin_left = 84.0
+margin_right = 92.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 8, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="HiScores/HS10"]
+margin_left = 96.0
+margin_right = 216.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+text = "ATARI INC"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="spacer" type="Label" parent="HiScores/HS10"]
+margin_left = 220.0
+margin_right = 230.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0.603922, 0.729412, 1 )
+custom_constants/line_spacing = -2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewHiscore" type="VBoxContainer" parent="."]
+margin_top = 116.0
+margin_right = 240.0
+margin_bottom = 157.0
+
+[node name="well_done_container" type="HBoxContainer" parent="NewHiscore"]
+margin_right = 240.0
+margin_bottom = 19.0
+alignment = 1
+
+[node name="well_done_text" type="Label" parent="NewHiscore/well_done_container"]
+margin_left = 10.0
+margin_right = 230.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.901961, 0.901961, 0, 1 )
+text = "Well Done! You have acheived a new
+high score, please enter you name"
+align = 1
+
+[node name="enter_name" type="HBoxContainer" parent="NewHiscore"]
+margin_top = 23.0
+margin_right = 240.0
+margin_bottom = 41.0
+alignment = 1
+
+[node name="name" type="LineEdit" parent="NewHiscore/enter_name"]
+margin_left = 60.0
+margin_right = 180.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 120, 8 )
+custom_fonts/font = ExtResource( 2 )
+text = "Player"
+align = 1
+max_length = 25
+expand_to_text_length = true
+context_menu_enabled = false

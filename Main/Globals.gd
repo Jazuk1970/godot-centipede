@@ -31,15 +31,12 @@ const dir = {
 #Variables
 var Score:int = 0 setget updateScore			#Player Score
 var HiScore:int = 0 setget updateHiScore 		#Hi-Score (not retentive from reboot)
+var Min_HiScore:int = 0
 var Lives:int  = 0 setget updateLives			#Player lives left
 var Level:int = 0 setget updateLevel			#Level of play (just determines starting row of aliens)
 var Screen_Size:Vector2 = Vector2()				#Screen size holder
 var OSScreen_Size:Vector2 = Vector2()			#OS screen size holder
 var HUD:Node									#A pointer to the HUD
-#var gameState = gameStates.Unknown				#The game state (current)
-#var playerState = playerStates.Dead				#The player state (current)
-#var mushroomRNG
-#var mushroomSeed =  -580368265253271177
 var grid:Array = []
 var mushroom_grid:Array = []
 var centipod_grid:Array = []
@@ -70,6 +67,7 @@ var spider_controller:Object
 var SFX:Object
 
 func _ready():
+	HUD = null
 	Screen_Size.x = ProjectSettings.get_setting("display/window/size/width")
 	Screen_Size.y = ProjectSettings.get_setting("display/window/size/height")
 	grid_size = (Screen_Size / grid_cell_size)
@@ -84,32 +82,29 @@ func _ready():
 
 #Update the level function
 func updateLevel(_val):							#Update the level value in the HUD
-	HUD = get_tree().get_nodes_in_group("HUD").front()		#keep the reference
+#	HUD = get_tree().get_nodes_in_group("HUD").front()		#keep the reference
 	if HUD != null:									#get a reference to the hud if we've not already
 		Level = _val
 		HUD.updateLevel(1,Level)					#call the HUD with the update
 
 #Update the score function
 func updateScore(_val):							#Update the score value in the HUD
-	HUD = get_tree().get_nodes_in_group("HUD").front()		#keep the reference
+	Score = _val									#update the score
 	if HUD != null:									#get a reference to the hud if we've not already
-		Score = _val									#update the score
 		HUD.updateScore(1,Score)					#call the HUD with the update
-#	if Score > HiScore:							#check if we have a new hi-score
-#		updateHiScore(Score)					#update the hi-score value
-
+		if Score > HiScore:
+			updateHiScore(Score)
+			
 #Update the lives function
 func updateLives(_val):							#Update the player lives in the hud
-	HUD = get_tree().get_nodes_in_group("HUD").front()		#keep the reference
+	Lives = _val
 	if HUD != null:									#get a reference to the hud if we've not already
-		Lives = _val
 		HUD.updateLives(1,Lives)					#call the HUD with the update
 
 #Update the hi-score function
 func updateHiScore(_val):						#Update the hi-score in the hud
-	HUD = get_tree().get_nodes_in_group("HUD").front()		#keep the reference
+	HiScore = _val								#update the hi-score
 	if HUD != null:									#get a reference to the hud if we've not already
-		HiScore = _val								#update the hi-score
 		HUD.updateScore(0,HiScore)					#call the HUD with the update
 
 #Choose a random number between low and high values (type: 0 = integer, 1 = float)
